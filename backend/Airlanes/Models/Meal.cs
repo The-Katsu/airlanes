@@ -1,6 +1,6 @@
 namespace Airlanes.Models
 {
-    public class MealId : BaseEntity
+    public class Meal : BaseEntity
     {
         public string? Breakfast {get; set;}
         public string? Lunch {get; set;}
