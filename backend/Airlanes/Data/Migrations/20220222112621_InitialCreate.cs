@@ -10,24 +10,12 @@ namespace Airlanes.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Airports",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Airports", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    CountryId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    Country = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,23 +40,11 @@ namespace Airlanes.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Countries",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Countries", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    PositionId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Position = table.Column<string>(type: "TEXT", nullable: false),
                     Surname = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Patronymic = table.Column<string>(type: "TEXT", nullable: false),
@@ -92,7 +68,7 @@ namespace Airlanes.Migrations
                     Arrival = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Places = table.Column<int>(type: "INTEGER", nullable: false),
                     CityId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    AirportId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Airport = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -109,7 +85,7 @@ namespace Airlanes.Migrations
                     CityId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Stars = table.Column<int>(type: "INTEGER", nullable: false),
                     PriceForNight = table.Column<int>(type: "INTEGER", nullable: false),
-                    PlacementId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    Placement = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -132,35 +108,12 @@ namespace Airlanes.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Placements",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Placements", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Positions",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Positions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tours",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    TourTypeId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Type = table.Column<string>(type: "TEXT", nullable: false),
+                    Price = table.Column<int>(type: "INTEGER", nullable: false),
                     FlightId = table.Column<Guid>(type: "TEXT", nullable: false),
                     StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Days = table.Column<int>(type: "INTEGER", nullable: false),
@@ -169,19 +122,6 @@ namespace Airlanes.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tours", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TourTypes",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TourTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,16 +143,10 @@ namespace Airlanes.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Airports");
-
-            migrationBuilder.DropTable(
                 name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "Clients");
-
-            migrationBuilder.DropTable(
-                name: "Countries");
 
             migrationBuilder.DropTable(
                 name: "Employees");
@@ -227,16 +161,7 @@ namespace Airlanes.Migrations
                 name: "Meals");
 
             migrationBuilder.DropTable(
-                name: "Placements");
-
-            migrationBuilder.DropTable(
-                name: "Positions");
-
-            migrationBuilder.DropTable(
                 name: "Tours");
-
-            migrationBuilder.DropTable(
-                name: "TourTypes");
 
             migrationBuilder.DropTable(
                 name: "Trips");

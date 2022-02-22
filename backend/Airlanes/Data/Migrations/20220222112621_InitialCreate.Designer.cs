@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Airlanes.Migrations
 {
     [DbContext(typeof(AirlanesDb))]
-    [Migration("20220216201438_InitialCreate")]
+    [Migration("20220222112621_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,28 +19,14 @@ namespace Airlanes.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.2");
 
-            modelBuilder.Entity("Airlanes.Models.Airport", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Airports");
-                });
-
             modelBuilder.Entity("Airlanes.Models.City", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CountryId")
+                    b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -86,21 +72,6 @@ namespace Airlanes.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("Airlanes.Models.Country", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
-                });
-
             modelBuilder.Entity("Airlanes.Models.Employee", b =>
                 {
                     b.Property<Guid>("Id")
@@ -129,7 +100,8 @@ namespace Airlanes.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PositionId")
+                    b.Property<string>("Position")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Salary")
@@ -150,7 +122,8 @@ namespace Airlanes.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("AirportId")
+                    b.Property<string>("Airport")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Arrival")
@@ -186,7 +159,8 @@ namespace Airlanes.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PlacementId")
+                    b.Property<string>("Placement")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PriceForNight")
@@ -223,36 +197,6 @@ namespace Airlanes.Migrations
                     b.ToTable("Meals");
                 });
 
-            modelBuilder.Entity("Airlanes.Models.Placement", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Placements");
-                });
-
-            modelBuilder.Entity("Airlanes.Models.Position", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Positions");
-                });
-
             modelBuilder.Entity("Airlanes.Models.Tour", b =>
                 {
                     b.Property<Guid>("Id")
@@ -268,33 +212,19 @@ namespace Airlanes.Migrations
                     b.Property<Guid>("MealId")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("TourTypeId")
+                    b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Tours");
-                });
-
-            modelBuilder.Entity("Airlanes.Models.TourType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TourTypes");
                 });
 
             modelBuilder.Entity("Airlanes.Models.Trip", b =>

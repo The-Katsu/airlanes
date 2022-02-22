@@ -6,7 +6,7 @@ namespace Airlanes.Models
         public DateTime Arrival {get; set;}
         public int Places {get; set;}
         public Guid CityId {get; set;}
-        public Guid AirportId {get; set;}
+        public string Airport {get; set;}
         public int Price {get; set;}
     }
 }
