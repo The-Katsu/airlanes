@@ -1,12 +1,12 @@
 using Airlanes.Data;
 using Microsoft.EntityFrameworkCore;
 
-class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
     private AirlanesDb _context;
     private DbSet<TEntity> dbSet;
 
-    public GenericRepository(AirlanesDb context)
+    public Repository(AirlanesDb context)
     {
         _context = context;
         dbSet = context.Set<TEntity>();
